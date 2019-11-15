@@ -1,0 +1,43 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the balancedSums function below.
+def balancedSums(arr):
+    n = len(arr)
+    if n==1:
+        return "YES"
+    if n==2:
+        return "NO"
+    lst1 = [0,arr[0]]
+    lst2 = [sum(arr)-arr[0], sum(arr)-arr[0]-arr[1]]
+    for i in range(2,n-1):
+        lst1.append(lst1[i-1]+arr[i-1])
+        lst2.append(lst2[i-1] - arr[i])
+    for i in range(0,len(lst1)):
+        if lst1[i]==lst2[i]:
+            return "YES"
+    return "NO"
+
+
+    
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    T = int(input().strip())
+
+    for T_itr in range(T):
+        n = int(input().strip())
+
+        arr = list(map(int, input().rstrip().split()))
+
+        result = balancedSums(arr)
+
+        fptr.write(result + '\n')
+
+    fptr.close()
