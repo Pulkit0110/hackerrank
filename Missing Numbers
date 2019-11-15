@@ -1,0 +1,41 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the missingNumbers function below.
+def missingNumbers(arr, brr):
+    mini = min(brr)
+    freqb = [0]*100
+    freqa = [0]*100
+    res = []
+    for i in brr:
+        freqb[i-mini] += 1
+    for i in arr:
+        freqa[i-mini] += 1
+    for i in range(0,100):
+        if freqb[i] != freqa[i]:
+            res.append(i+mini)
+    return res
+
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    n = int(input())
+
+    arr = list(map(int, input().rstrip().split()))
+
+    m = int(input())
+
+    brr = list(map(int, input().rstrip().split()))
+
+    result = missingNumbers(arr, brr)
+
+    fptr.write(' '.join(map(str, result)))
+    fptr.write('\n')
+
+    fptr.close()
