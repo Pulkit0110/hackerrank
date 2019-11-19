@@ -1,0 +1,33 @@
+#!/bin/python3
+
+import os
+import sys
+
+# Complete the solve function below.
+def solve(a):
+    lst = [a[0]]
+    n = len(a)
+    for i in range(0,n-1):
+        temp = a[i]
+        while(temp%a[i+1]!=0):
+            temp += a[i]
+        lst.append(temp)
+    lst.append(a[n-1])
+    return lst
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    t = int(input())
+
+    for t_itr in range(t):
+        a_count = int(input())
+
+        a = list(map(int, input().rstrip().split()))
+
+        result = solve(a)
+
+        fptr.write(' '.join(map(str, result)))
+        fptr.write('\n')
+
+    fptr.close()
