@@ -1,0 +1,7 @@
+# Enter your code here. Read input from STDIN. Print output to STDOUT
+from collections import Counter
+k = int(input())
+lst = list(map(int, input().split()))
+c = Counter(lst)
+a = c.most_common()[:len(c)-2:-1]
+print(a[0][0])
